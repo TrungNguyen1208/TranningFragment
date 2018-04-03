@@ -36,33 +36,30 @@ public class MainActivity extends BaseDrawerActivity implements OnListViewItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        oneFragment = (OneFragment) this.getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_one);
+        fabCreate = (FloatingActionButton) findViewById(R.id.btnCreate);
 
+
+        oneFragment = (OneFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_one);
         if (oneFragment == null) {
             oneFragment = OneFragment.newInstance();
 
             FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_one, oneFragment, "Fragment One");
+            transaction.addToBackStack(null);
             transaction.commit();
         }
-
     }
 
     @Override
     public void onItemClick(int position) {
         int color = OneFragment.COLOURS[position];
-
         FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
         transaction.hide(oneFragment);
-
-        twoFragment = (TwoFragment)
-                this.getSupportFragmentManager().findFragmentById(R.id.fragment_two);
-
+        twoFragment = (TwoFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_two);
         if (twoFragment == null) {
-            twoFragment = TwoFragment.newInstance(color);
-
+            twoFragment = TwoFragment.newInstance(color);;
             transaction.replace(R.id.fragment_two, twoFragment, "Fragment two");
+            transaction.addToBackStack(null);
             onActivitySendToFragment = (TwoFragment) twoFragment;
 
             transaction.commit();
