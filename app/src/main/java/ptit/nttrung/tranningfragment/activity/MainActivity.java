@@ -6,8 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -23,7 +25,7 @@ public class MainActivity extends BaseDrawerActivity implements OnListViewItemCl
 
     @BindView(R.id.btnCreate)
     FloatingActionButton fabCreate;
-    @BindView(R.id.content)
+
     CoordinatorLayout clContent;
 
     OneFragment oneFragment;
@@ -38,7 +40,6 @@ public class MainActivity extends BaseDrawerActivity implements OnListViewItemCl
 
         fabCreate = (FloatingActionButton) findViewById(R.id.btnCreate);
 
-
         oneFragment = (OneFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment_one);
         if (oneFragment == null) {
             oneFragment = OneFragment.newInstance();
@@ -48,6 +49,17 @@ public class MainActivity extends BaseDrawerActivity implements OnListViewItemCl
             transaction.addToBackStack(null);
             transaction.commit();
         }
+
+        fabCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("TAG", "Click");
+                clContent.setVisibility(View.INVISIBLE);
+
+
+            }
+        });
+
     }
 
     @Override
@@ -101,5 +113,24 @@ public class MainActivity extends BaseDrawerActivity implements OnListViewItemCl
                 return true;
             }
         });
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("TAG", "Pause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("TAG", "Stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("TAG", "Destroy");
     }
 }

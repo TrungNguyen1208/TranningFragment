@@ -81,17 +81,17 @@ public class OneFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter2);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                OneFragment.this.colorList.addAll(initListColor());
-                List<ptit.nttrung.tranningfragment.utils.Color> temp = new ArrayList<>();
-                temp.addAll(colorList);
-
-//                OneFragment.this.adapter2.update2(temp);
-                OneFragment.this.adapter2.updateColorListItem(temp);
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                OneFragment.this.colorList.addAll(initListColor());
+//                List<ptit.nttrung.tranningfragment.utils.Color> temp = new ArrayList<>();
+//                temp.addAll(colorList);
+//
+////                OneFragment.this.adapter2.update2(temp);
+//                OneFragment.this.adapter2.updateColorListItem(temp);
+//            }
+//        });
 
         EndlessRecyclerViewScrollListener endlessRecyclerViewScrollListener
                 = new EndlessRecyclerViewScrollListener(layoutManager) {
